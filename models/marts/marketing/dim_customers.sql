@@ -9,11 +9,11 @@ orders as (
 customer_orders as (
 
     select
-        customer_id,
+        user_id,
 
         min(order_date) as first_order_date,
         max(order_date) as most_recent_order_date,
-        count(order_id) as number_of_orders
+        count(id) as number_of_orders
 
     from orders
 
@@ -23,7 +23,7 @@ customer_orders as (
 
 customer_payments as (
     select 
-        customer_id, 
+        user_id, 
         sum(amount) as lifetime_value
     from {{ ref('fct_orders') }}
     group by 1
@@ -32,7 +32,7 @@ customer_payments as (
 final as (
 
     select
-        customers.customer_id,
+        customers.user_id,
         customers.first_name,
         customers.last_name,
         customer_orders.first_order_date,
@@ -42,8 +42,8 @@ final as (
 
     from customers
 
-    left join customer_orders using (customer_id)
-    left join customer_payments using (customer_id)
+    left join customer_orders using (user_id)
+    left join customer_payments using (user_id)
 
 )
 

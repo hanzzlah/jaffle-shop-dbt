@@ -4,6 +4,6 @@ select
     p.amount as amount 
 from 
     {{ ref('stg_jaffle_shop__orders') }} as o
-    left join {{ ref('stg_stripe__payments') }} as p
+    left join {{ ref('stg_stripe__payment') }} as p
     on o.id = p.orderid
 where p.status <> 'fail'

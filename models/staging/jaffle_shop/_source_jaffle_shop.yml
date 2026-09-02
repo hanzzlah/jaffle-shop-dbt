@@ -2,19 +2,22 @@ version: 2
 
 sources:
   - name: jaffle_shop
+    description: Shortcut to the jaffle shop schema in the `raw` database in Snowflake
     database: raw
     tables:
       - name: customers
+        description: Contains customer data
         columns:
           - name: id
-            description: primary key
+            description: primary key for the customer data
             data_tests:
               - unique
               - not_null 
       - name: orders
+        description: Cotains orders data
         columns:
           - name: id
-            description: primary key
+            description: primary key for the orders data
             data_tests:
               - unique
               - not_null 

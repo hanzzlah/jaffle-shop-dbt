@@ -3,8 +3,10 @@ version: 2
 sources:
   - name: stripe
     database: raw
+    description: Shortcut to the Stripe Schema in the `raw` database in Snowflake
     tables:
       - name: payment
+        description: Contains data about the payments made
         config:
             loaded_at_field: _batched_at
             freshness:
